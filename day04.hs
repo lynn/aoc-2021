@@ -1,7 +1,5 @@
+import Aoc
 import Data.List
-
-parseBoards [] = []
-parseBoards ("":xs) = map (map read . words) (take 5 xs) : parseBoards (drop 5 xs)
 
 -- Does `ns` win on this board?
 win ns b = any (all (`elem` ns)) $ b ++ transpose b
@@ -13,9 +11,8 @@ play bs drawn (n:next) =
   in [n * sum (concat b \\ (n:drawn)) | b <- won] ++ play lost (n:drawn) next
 
 main = do
-  line <- getLine
-  let draws = (read ("["++line++"]")) :: [Integer]
-  boards <- parseBoards . lines <$> getContents
+  draws <- getInts
+  boards <- map (map readInts) <$> getParagraphs
   let scores = play boards [] draws
   print (head scores)
   print (last scores)
