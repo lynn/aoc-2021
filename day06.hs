@@ -4,5 +4,5 @@ main = do
   fish <- getInts
   let state = [count (==i) fish | i <- [0..8]]
   let history = iterate step state
-  print $ sum $ history !! 80
-  print $ sum $ history !! 256
+  print $ sum (history !! 80)
+  print $ sum (history !! 256)
