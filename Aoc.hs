@@ -1,6 +1,8 @@
 module Aoc where
-
 import Data.Char
+
+count :: (a -> Bool) -> [a] -> Int
+count p xs = length $ filter p xs
 
 readInts :: String -> [Integer]
 readInts = map read . words . map noJunk
