@@ -17,6 +17,9 @@ paragraphs xs = filter (>[]) $ go [] xs
         go p (x:xs) = go (x:p) xs
         go p [] = [reverse p]
 
+getLines :: IO [String]
+getLines = lines <$> getContents
+
 getParagraphs :: IO [[String]]
 getParagraphs = paragraphs . lines <$> getContents
 
